@@ -43,6 +43,7 @@
         <easymock.version>3.4</easymock.version>
         <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
         <oracle-jdbc-version>11.2.0.3.0</oracle-jdbc-version>
+        <fileUtils-version>2.4</fileUtils-version>
     </properties>
 
     <repositories>
@@ -54,6 +55,14 @@
     </repositories>
 
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${fileUtils-version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-analyzers-common</artifactId>
