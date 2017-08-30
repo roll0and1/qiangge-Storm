@@ -28,15 +28,6 @@ public class WordCounter extends BaseRichBolt {
 		}
 	}
 
-	/**
-	 * On create
-	 */
-	public void prepare(Map stormConf, TopologyContext context) {
-		this.counters = new HashMap<String, Integer>();
-		this.name = context.getThisComponentId();
-		this.id = context.getThisTaskId();
-	}
-
 
 	/**
 	 *  为每个单词计数

@@ -18,7 +18,7 @@ public class ExclamationTopology {
 		builder.setBolt("exlamim1",new ExclamationBolt(),3).shuffleGrouping("word");
 		builder.setBolt("exlamim2",new ExclamationBolt(),2).shuffleGrouping("exlamim1");
 		Config config = new Config();
-		config.setDebug(true);
+		//config.setDebug(true);
 		if(args!=null&&args.length>0){
 			config.setNumWorkers(3);
 			StormSubmitter.submitTopology(args[0],config,builder.createTopology());

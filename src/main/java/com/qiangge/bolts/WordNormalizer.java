@@ -24,22 +24,35 @@ public class WordNormalizer extends BaseRichBolt {
 	 * 文本行会全部转化成小写，并切分它，从中得到所有单词。
 	 */
 	public void execute(Tuple input) {
-		String sentence = input.getString(0);
-		String[] words = sentence.split(" ");
-		for (String word : words) {
-			word = word.trim();
-			if (!word.isEmpty()) {
-				word = word.toLowerCase();
-				//发布这个单词
-				List a = new ArrayList();
-				a.add(input);
-				collector.emit(a, new Values(word));
+		Long now = System.currentTimeMillis();
+		if (now - startTime > 500l) {
+			startTime = now;
+			System.err.println("============================当前时间变为：" + startTime + "==================================");
+
+			String sentence = input.getString(0);
+			String[] words = sentence.split(" ");
+			for (String word : words) {
+				word = word.trim();
+				if (!word.isEmpty()) {
+					word = word.toLowerCase();
+					//发布这个单词
+					List a = new ArrayList();
+					a.add(input);
+					collector.emit(a, new Values(word));
+				}
 			}
 		}
 	}
 
+	Long startTime = null;
+
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
 		this.collector = collector;
+
+		startTime = System.currentTimeMillis();
+
+		System.err.println("==========================当前时间：" + startTime + "=========================================");
+
 	}
 
 	/**

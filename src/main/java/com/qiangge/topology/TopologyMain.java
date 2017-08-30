@@ -13,11 +13,6 @@ public class TopologyMain {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		/*TransactionalTopologyBuilder
-		TweetsTransactionalSpoutCoordinator*/
-
-
-		//Topology definition
 		TopologyBuilder builder = new TopologyBuilder();
 		builder.setSpout("word-reader", new WordReader());
 		builder.setBolt("word-normalizer", new WordNormalizer())
@@ -27,23 +22,17 @@ public class TopologyMain {
 
 		//Configuration
 		Config conf = new Config();
-//		conf.put("wordsFile", args[0]);
 		conf.put("wordsFile", "D:\\ideaProjects\\qiangge-storm\\src\\main\\java\\words.txt");
 //		conf.put("wordsFile", "words.txt");
-		conf.setDebug(false);
+//		conf.setDebug(false);
 		//Topology run
-		conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
+		//conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
 		LocalCluster cluster = new LocalCluster();
-		cluster.submitTopology("Getting-Started-Toplogie", conf, builder.createTopology());
-		Thread.sleep(1000);
-		cluster.shutdown();
+		cluster.submitTopology("test", conf, builder.createTopology());
+		Thread.sleep(10000);
+		//cluster.killTopology("test");
+		//cluster.shutdown();
 
 
-		/*try {
-			FileReader aFileReader= new FileReader("D:\\workspce-riskcontrol\\stromDemo\\src\\main\\java\\words.txt");
-			System.out.println(aFileReader);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}*/
 	}
 }

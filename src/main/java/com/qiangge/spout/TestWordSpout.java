@@ -26,10 +26,13 @@ public class TestWordSpout extends BaseRichSpout {
 		final String[] words = new String[]{"nathan","mike","jackson","golda","bertels"};
 		final Random rand = new Random();
 		final String word = words[rand.nextInt(words.length)];
+		System.out.println("=========================begin============================");
 		collector.emit(new Values(word));
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer){
 		declarer.declare(new Fields("words"));
+
+
 	}
 }

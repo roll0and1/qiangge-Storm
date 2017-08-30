@@ -15,6 +15,7 @@ import java.util.Map;
  */
 public class ExclamationBolt extends BaseRichBolt {
 	OutputCollector collector;
+
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
 		this.collector = collector;
@@ -22,13 +23,13 @@ public class ExclamationBolt extends BaseRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
-		this.collector.emit(tuple,new Values(tuple.getString(0)+"!!!"));
-		System.out.println(tuple.getString(0)+"!!!");
+		this.collector.emit(tuple, new Values(tuple.getString(0) + "!!!"));
+		System.out.println(tuple.getString(0) + "!!!");
 		this.collector.ack(tuple);
 	}
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		declarer.declare(new Fields("word"));
+		declarer.declare(new Fields("word-reader"));
 	}
 }
