@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by zhazha on 2017/8/24.
  */
-public class OrderCounterBolt extends BaseRichBolt {
+public class OrderCounterFieldBolt extends BaseRichBolt {
 	OutputCollector collector;
 	String curDateString = null;
 	Map<String, Integer> count = new HashMap<String, Integer>();
